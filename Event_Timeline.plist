@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>2010</key>
+	<dict>
+		<key>january</key>
+		<dict>
+			<key>event</key>
+			<string>Illinois&apos; ban on texting while driving goes into effect.</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Texting_while_driving</string>
+		</dict>
+		<key>february</key>
+		<dict>
+			<key>event</key>
+			<string>A SeaWorld employee in Orlando, Florida, is killed by a killer whale during a live performance</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Incidents_at_SeaWorld_parks#SeaWorld_Orlando</string>
+		</dict>
+		<key>march</key>
+		<dict>
+			<key>event</key>
+			<string>A shortage of tomatoes which lasts until April begins</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/2010_United_States_tomato_shortage</string>
+		</dict>
+		<key>april</key>
+		<dict>
+			<key>event</key>
+			<string>An explosion occurs at the Deepwater Horizon oil rig, killing 11 workers</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Deepwater_Horizon_explosion</string>
+		</dict>
+		<key>may</key>
+		<dict>
+			<key>event</key>
+			<string>Car bomb fails to go off in Times Square, New York City.</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/2010_Times_Square_car_bombing_attempt</string>
+		</dict>
+		<key>june</key>
+		<dict>
+			<key>event</key>
+			<string>The Protecting Cyberspace as a National Asset Act is introduced in the US Senate</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Protecting_Cyberspace_as_a_National_Asset_Act</string>
+		</dict>
+		<key>july</key>
+		<dict>
+			<key>event</key>
+			<string>The Russian spies are deported from the United States</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Illegals_Program</string>
+		</dict>
+		<key>august</key>
+		<dict>
+			<key>event</key>
+			<string>Iraq War: The last U.S. combat troops leave Iraq</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Iraq_War</string>
+		</dict>
+		<key>september</key>
+		<dict>
+			<key>event</key>
+			<string>The Fourmile Canyon Fire, the most costly wild fire in Colorado state history </string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Fourmile_Canyon#Fourmile_Canyon_Fire</string>
+		</dict>
+		<key>october</key>
+		<dict>
+			<key>event</key>
+			<string>The US Military begins accepting applications for gay service members</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/Don%27t_ask,_don%27t_tell</string>
+		</dict>
+		<key>november</key>
+		<dict>
+			<key>event</key>
+			<string>WikiLeaks releases the first of thousands of confidential documents sent by U.S. diplomats</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/United_States_diplomatic_cables_leak</string>
+		</dict>
+		<key>december</key>
+		<dict>
+			<key>event</key>
+			<string>US Census are released. The US population grows by 9.7% to 310 million</string>
+			<key>link</key>
+			<string>https://en.wikipedia.org/wiki/2010_United_States_Census</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
