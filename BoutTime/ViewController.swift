@@ -5,6 +5,12 @@
 //  Created by Luis Laborda on 4/25/19.
 //  Copyright © 2019 Luis Laborda. All rights reserved.
 //
+// Resources:
+// Gesture Recognizer:
+// https://www.ioscreator.com/tutorials/detect-shake-gestures-ios-tutorial
+//
+// Segues:
+// https://developer.apple.com/documentation/uikit/uiviewcontroller/1621490-prepare
 
 import UIKit
 
@@ -26,6 +32,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
+    let timer: Int = 5
+    let numberOfRounds: Int = 3
+    
     /// Game motherboard
     var game: BoutTimeGame
     
@@ -34,29 +43,26 @@ class ViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         // Initialization of the game's motherboard
-        self.game = Game.init(timerInterval: 1.0, timerRepeat: true, timerSetTime: 10, totalRounds: 6)
+        self.game = Game.init(timerInterval: 1.0, timerRepeat: true, timerSetTime: timer, totalRounds: numberOfRounds)
         super.init(coder: aDecoder)
     }
     
+    // MARK: -
+    // MARK: Override Meethods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.disableBtns()
-
-        // obtain list of events and show on each label
-        game.obtainEventList()
-        if let events = game.listOfEvents {
-            eventLabel_1.text = events[0].event
-            eventLabel_2.text = events[1].event
-            eventLabel_3.text = events[2].event
-            eventLabel_4.text = events[3].event
-        }
         
+        // Disables the buttons view details of each events.
+        // these sits on top of the labels
+        self.disableEventsBtns()
+        
+        self.game = Game.init(timerInterval: 1.0, timerRepeat: true, timerSetTime: 5, totalRounds: 6)
+        
+        self.newRound()
         nextRoundBtn.isHidden = true
+        nextRoundBtn.titleLabel?.text = ""
         
-        // start the timer
-        game.timer.start(countdownLbl: timerLabel)
-        
-        // checks when label is == 0
+        // 3. checks when label is == 0 (Not tought in class )
         timerLabelObserver = timerLabel.observe(\.text) { (lbl,ob) in
             if let text = lbl.text {
                 if text == "0" {
@@ -66,21 +72,48 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: Segues passing information
+    // https://developer.apple.com/documentation/uikit/uiviewcontroller/1621490-prepare
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let webViewController: WebViewController = segue.destination as! WebViewController
+        
+        if let url = sender as? String {
+            webViewController.address = url
+        }
+    }
+    
+    // MARK: Gesture recognizer
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            self.checkAnswer()
+        }
+    }
+    
+    
+    // MARK: -
+    // MARK: Game UI Logic Methods
+
     private func checkAnswer() {
         
+        // hides the time label
         timerLabel.isHidden = true
-        timerLabel.text = "-"
+        timerLabel.text = ""
+        
+        // shows the result button
         nextRoundBtn.isHidden = false
         nextRoundBtn.titleLabel?.text = ""
-        nextRoundBtn.contentMode = .scaleToFill
         
+        // verifies if events are in the correct order
         let correctOrder = game.verifyAnswer()
         
         if correctOrder == true {
             /// display button correct
             if let bgImage: UIImage = UIImage(named: "next_round_success") {
                 nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
-                
             }
         } else {
             /// display button incorrect
@@ -88,10 +121,38 @@ class ViewController: UIViewController {
                 nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
             }
         }
+        
+        // info label
+        infoLabel.text = "Tap events to learn more"
+        enableEventsBtns()
+        
+        if game.totalRounds == 0 {
+            // show score
+            print("End of Game: \(game.score)")
+        }
     }
     
-    @IBAction func swapListOfEvents(_ sender: UIButton) {
+    private func newRound() {
+        if game.totalRounds == 0 {
+            game.totalRounds = numberOfRounds
+        }
         
+        game.obtainEventList()
+        if let events = game.listOfEvents {
+            eventLabel_1.text = events[0].event
+            eventLabel_2.text = events[1].event
+            eventLabel_3.text = events[2].event
+            eventLabel_4.text = events[3].event
+        }
+        
+        game.timer.seconds = timer
+        game.timer.start(countdownLbl: timerLabel)
+    }
+    
+    // MARK: -
+    // MARK: IBActions
+    
+    @IBAction func swapListOfEvents(_ sender: UIButton) {
         guard let totalNumEvents = game.listOfEvents?.count else {
             return
         }
@@ -150,24 +211,58 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate func flipButon(nextRound: Bool) {
-        if nextRound == true {
-            timerLabel.isHidden = true
-            nextRoundBtn.isHidden = false
-        } else {
-            timerLabel.isHidden = false
-            nextRoundBtn.isHidden = true
+    
+    @IBAction func nextRoundPressed(_ sender: UIButton) {
+        sender.isHidden = true
+        timerLabel.isHidden = false
+        timerLabel.text = ""
+        infoLabel.text = "Shake to complete"
+        disableEventsBtns()
+        self.newRound()
+    }
+    
+    @IBAction func showDetails(_ sender: UIButton) {
+        var eventId: Int = 0
+        switch sender.tag {
+        case 201:
+            eventId = 0
+        case 202:
+            eventId = 1
+        case 203 :
+            eventId = 2
+        default:
+            eventId = 3
+        }
+        
+        if let eventURL = game.listOfEvents?[eventId].link {
+            performSegue(withIdentifier: "showDetail", sender: eventURL)
         }
     }
     
-    fileprivate func disableBtns() {
+    
+    // MARK: -
+    // MARK: UI Helper Methods
+
+    fileprivate func disableEventsBtns() {
+        // disables the swap events buttons
+        for n in 1...6 {
+            if let button = self.view.viewWithTag(n) as? UIButton {
+                button.isEnabled = true
+            }
+        }
         event1Btn.isEnabled = false
         event2Btn.isEnabled = false
         event3Btn.isEnabled = false
         event4Btn.isEnabled = false
     }
     
-    fileprivate func enableBtns() {
+    fileprivate func enableEventsBtns() {
+         // enables the swap events buttons
+        for n in 1...6 {
+            if let button = self.view.viewWithTag(n) as? UIButton {
+                button.isEnabled = false
+            }
+        }
         event1Btn.isEnabled = true
         event2Btn.isEnabled = true
         event3Btn.isEnabled = true

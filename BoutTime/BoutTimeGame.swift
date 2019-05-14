@@ -230,13 +230,7 @@ class Game: BoutTimeGame {
     var listOfEvents: [SingleEvent]?
     
     /// countdown
-    var timer: GameTimer {
-        didSet {
-            if timer.seconds == 0 {
-                print("finish round!")
-            }
-        }
-    }
+    var timer: GameTimer
     
     /**
      Initializes a new game with the necessary questions and the number of rounds per game
@@ -275,6 +269,7 @@ class Game: BoutTimeGame {
         }
     }
     
+    
     public func swapEvent(indexA: Int, indexB: Int, labelA: UILabel, labelB: UILabel) {
         
         guard let _ = self.listOfEvents else {
@@ -298,11 +293,12 @@ class Game: BoutTimeGame {
      */
     public func verifyAnswer() -> Bool {
     
+        self.timer.stop()
         self.totalRounds -= 1
         var correctAns: Bool = false
         
         if let events = listOfEvents {
-            if (events[0].order > events[1].order) && (events[1].order > events[2].order) && (events[2].order > events[3].order) {
+            if (events[0].order < events[1].order) && (events[1].order < events[2].order) && (events[2].order < events[3].order) {
                 score += 1
                 correctAns = true
             }
