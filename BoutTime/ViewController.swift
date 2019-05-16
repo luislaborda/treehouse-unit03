@@ -147,6 +147,9 @@ class ViewController: UIViewController, Restartable {
         // verifies if events are in the correct order
         let correctOrder = game.verifyAnswer()
         
+        // play sound
+        self.game.playSound(state: correctOrder)
+    
         self.roundUI(order:correctOrder )
         self.enableEventsBtns()
     }

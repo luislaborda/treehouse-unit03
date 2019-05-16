@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+
 
 // MARK: - Enums
 enum TimelineDataSourceError: Error {
@@ -42,6 +44,7 @@ protocol BoutTimeGame {
     func obtainEventList()
     func swapEvent(indexA: Int, indexB: Int, labelA: UILabel, labelB: UILabel)
     func verifyAnswer() -> Bool
+    func playSound(state: Bool)
 }
 
 protocol Timeable {
@@ -232,6 +235,9 @@ class Game: BoutTimeGame {
     /// countdown
     var timer: GameTimer
     
+    /// sound
+    var player: AVAudioPlayer?
+    
     /**
      Initializes a new game with the necessary questions and the number of rounds per game
      
@@ -257,7 +263,7 @@ class Game: BoutTimeGame {
      
      - Returns: nil
      */
-    public func obtainEventList() {
+    func obtainEventList() {
         do {
             let data = try PlistTimelineDataSource.dictionary(fromFile: timelineDataSource, ofType: plist)
             let events = try RandomEventGenerator.pull(numberOfQuestions: 4, from: data)
@@ -269,7 +275,7 @@ class Game: BoutTimeGame {
     }
     
     
-    public func swapEvent(indexA: Int, indexB: Int, labelA: UILabel, labelB: UILabel) {
+    func swapEvent(indexA: Int, indexB: Int, labelA: UILabel, labelB: UILabel) {
         
         guard let _ = self.listOfEvents else {
             return
@@ -290,7 +296,7 @@ class Game: BoutTimeGame {
             - true: they are in the correct chronological order
             - false: they are NOT in the correct chronological order
      */
-    public func verifyAnswer() -> Bool {
+    func verifyAnswer() -> Bool {
         var correctAns: Bool = false
         
         if let events = listOfEvents {
@@ -301,6 +307,33 @@ class Game: BoutTimeGame {
         }
         
         return correctAns
+    }
+    
+    func playSound(state: Bool) {
+        
+        var filename: String
+        
+        if state == true {
+            filename = "CorrectDing"
+        } else {
+            filename = "IncorrectBuzz"
+        }
+        
+        guard let url = Bundle.main.url(forResource: filename, withExtension: "wav") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            
+            guard let player = player else { return }
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 
 }
