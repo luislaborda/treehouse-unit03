@@ -41,8 +41,8 @@ class ViewController: UIViewController, Restartable {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
-    let timer: Int = 3
-    let numberOfRounds: Int = 5
+    let timer: Int = 30
+    let numberOfRounds: Int = 6
     
     /// Game motherboard
     var game: BoutTimeGame
