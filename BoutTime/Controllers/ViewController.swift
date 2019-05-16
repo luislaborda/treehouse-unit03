@@ -42,7 +42,7 @@ class ViewController: UIViewController, Restartable {
     @IBOutlet weak var timerLabel: UILabel!
     
     let timer: Int = 3
-    let numberOfRounds: Int = 2
+    let numberOfRounds: Int = 5
     
     /// Game motherboard
     var game: BoutTimeGame
@@ -143,6 +143,7 @@ class ViewController: UIViewController, Restartable {
     private func checkAnswer() {
         
         game.totalRounds -= 1
+        self.game.timer.stop()
         
         // verifies if events are in the correct order
         let correctOrder = game.verifyAnswer()

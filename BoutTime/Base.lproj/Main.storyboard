@@ -399,13 +399,27 @@
                                     <action selector="playAgain:" destination="aXM-gC-gyU" eventType="touchUpInside" id="mzH-hI-yOy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QY5-sH-eqk">
+                                <rect key="frame" x="147.5" y="385" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="CDL-yk-Mhs"/>
+                                </constraints>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" red="1" green="0.46253287059999998" blue="0.33123592470000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismiss:" destination="aXM-gC-gyU" eventType="touchUpInside" id="ogx-c2-oOQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.048853218560000002" green="0.1569954455" blue="0.2823669016" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="8IA-mQ-Vn8" firstAttribute="centerY" secondItem="qcc-SL-T7V" secondAttribute="centerY" id="BVJ-Tr-qBj"/>
                             <constraint firstItem="ASE-7b-oZk" firstAttribute="centerX" secondItem="qcc-SL-T7V" secondAttribute="centerX" id="F3T-hT-i2v"/>
+                            <constraint firstItem="QY5-sH-eqk" firstAttribute="centerX" secondItem="qcc-SL-T7V" secondAttribute="centerX" id="IjC-5j-RA4"/>
                             <constraint firstItem="8IA-mQ-Vn8" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0Zx-CL-h9r" secondAttribute="leading" constant="120" id="LKO-df-qrJ"/>
                             <constraint firstItem="FjJ-0N-cN8" firstAttribute="top" secondItem="ASE-7b-oZk" secondAttribute="bottom" constant="25" id="MNK-1Q-yYU"/>
+                            <constraint firstItem="QY5-sH-eqk" firstAttribute="top" secondItem="8IA-mQ-Vn8" secondAttribute="bottom" constant="30" id="MTn-am-GBy"/>
                             <constraint firstItem="ASE-7b-oZk" firstAttribute="top" secondItem="0Zx-CL-h9r" secondAttribute="top" constant="100" id="Pl3-Zb-SDH"/>
                             <constraint firstItem="FjJ-0N-cN8" firstAttribute="centerX" secondItem="ASE-7b-oZk" secondAttribute="centerX" id="aWH-UY-gEr"/>
                             <constraint firstItem="0Zx-CL-h9r" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="8IA-mQ-Vn8" secondAttribute="trailing" constant="120" id="eSJ-ob-GKY"/>
@@ -419,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdI-Sx-6Hy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038" y="664"/>
+            <point key="canvasLocation" x="1037.5999999999999" y="663.41829085457277"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="0TK-e2-9DR">

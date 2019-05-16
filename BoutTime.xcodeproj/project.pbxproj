@@ -69,10 +69,19 @@
 			path = audio;
 			sourceTree = "<group>";
 		};
+		51529DAE228D2F4100C6683A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				51DDEF912272A0960081DF45 /* ViewController.swift */,
+				51529D94228A670B00C6683A /* WebViewController.swift */,
+				51529D99228D05E400C6683A /* ScoreViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		51DDEF832272A0960081DF45 = {
 			isa = PBXGroup;
 			children = (
-				51DEA8F9227B9F95004CBB02 /* TimelineDataSource.plist */,
 				51DDEF8E2272A0960081DF45 /* BoutTime */,
 				51DDEF8D2272A0960081DF45 /* Products */,
 				51529D96228A70E400C6683A /* Frameworks */,
@@ -90,17 +99,16 @@
 		51DDEF8E2272A0960081DF45 /* BoutTime */ = {
 			isa = PBXGroup;
 			children = (
+				51DEA8F9227B9F95004CBB02 /* TimelineDataSource.plist */,
+				51DDEFA3227936470081DF45 /* BoutTimeGame.swift */,
+				51529DAE228D2F4100C6683A /* Controllers */,
 				51529DA9228D2ED100C6683A /* audio */,
 				51DEA8FD228121E4004CBB02 /* App Elements */,
 				51DDEF8F2272A0960081DF45 /* AppDelegate.swift */,
-				51DDEF912272A0960081DF45 /* ViewController.swift */,
-				51529D94228A670B00C6683A /* WebViewController.swift */,
-				51529D99228D05E400C6683A /* ScoreViewController.swift */,
 				51DDEF932272A0960081DF45 /* Main.storyboard */,
 				51DDEF962272A0980081DF45 /* Assets.xcassets */,
 				51DDEF982272A0980081DF45 /* LaunchScreen.storyboard */,
 				51DDEF9B2272A0980081DF45 /* Info.plist */,
-				51DDEFA3227936470081DF45 /* BoutTimeGame.swift */,
 			);
 			path = BoutTime;
 			sourceTree = "<group>";
