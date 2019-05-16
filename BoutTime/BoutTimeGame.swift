@@ -169,7 +169,7 @@ class GameTimer: Timeable {
     /// Number of secods for each play, default to 60
     var seconds: Int {
         didSet {
-            if seconds == -1 {
+            if seconds < 0 {
                 timer?.invalidate()
             }
         }
@@ -263,7 +263,6 @@ class Game: BoutTimeGame {
             let events = try RandomEventGenerator.pull(numberOfQuestions: 4, from: data)
             
             self.listOfEvents = events
-            self.totalRounds -= 1
         } catch let error {
             fatalError("\(error)")
         }
@@ -292,9 +291,6 @@ class Game: BoutTimeGame {
             - false: they are NOT in the correct chronological order
      */
     public func verifyAnswer() -> Bool {
-    
-        self.timer.stop()
-        self.totalRounds -= 1
         var correctAns: Bool = false
         
         if let events = listOfEvents {

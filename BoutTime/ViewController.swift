@@ -11,10 +11,19 @@
 //
 // Segues:
 // https://developer.apple.com/documentation/uikit/uiviewcontroller/1621490-prepare
+//
+// Deleagte:
+// https://stackoverflow.com/questions/40126662/how-to-pass-data-from-modal-view-controller-back-when-dismissed
+// by: Suhit Patil (https://stackoverflow.com/users/1570808/suhit-patil)
 
 import UIKit
 
-class ViewController: UIViewController {
+// for delegation purposes - stars a new game
+protocol Restartable: class {
+    func newGame(restart: Bool)
+}
+
+class ViewController: UIViewController, Restartable {
 
     @IBOutlet weak var playingView: UIView!
     @IBOutlet weak var countdownView: UIView!
@@ -32,8 +41,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
-    let timer: Int = 5
-    let numberOfRounds: Int = 3
+    let timer: Int = 3
+    let numberOfRounds: Int = 2
     
     /// Game motherboard
     var game: BoutTimeGame
@@ -49,23 +58,21 @@ class ViewController: UIViewController {
     
     // MARK: -
     // MARK: Override Meethods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.initialUI()
+        self.newGame(restart: false)
         
-        // Disables the buttons view details of each events.
-        // these sits on top of the labels
-        self.disableEventsBtns()
-        
-        self.game = Game.init(timerInterval: 1.0, timerRepeat: true, timerSetTime: 5, totalRounds: 6)
-        
-        self.newRound()
-        nextRoundBtn.isHidden = true
-        nextRoundBtn.titleLabel?.text = ""
-        
-        // 3. checks when label is == 0 (Not tought in class )
+        // Perhaps I can start the timer but I want separate the timer out of the VIEW trying to follow the MVC pattern
+        // checks when label is == 0
+        // Source
+        // https://stackoverflow.com/questions/51292802/how-to-always-observe-the-text-of-label-and-change-color-in-swift-4
         timerLabelObserver = timerLabel.observe(\.text) { (lbl,ob) in
             if let text = lbl.text {
                 if text == "0" {
+                    self.game.timer.stop()
                     self.checkAnswer()
                 }
             }
@@ -75,14 +82,28 @@ class ViewController: UIViewController {
     // MARK: Segues passing information
     // https://developer.apple.com/documentation/uikit/uiviewcontroller/1621490-prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let webViewController: WebViewController = segue.destination as! WebViewController
+        if segue.identifier == "showDetail" {
+            let webViewController: WebViewController = segue.destination as! WebViewController
+            
+            if let url = sender as? String {
+                webViewController.address = url
+            }
+        }
         
-        if let url = sender as? String {
-            webViewController.address = url
+        if segue.identifier == "results" {
+            if let scoreViewController: ScoreViewController = segue.destination as? ScoreViewController {
+                if let score = sender as? Int {
+                    scoreViewController.delegate = self
+                    scoreViewController.score = "\(score)/\(numberOfRounds)"
+                }
+            }
         }
     }
     
+    
     // MARK: Gesture recognizer
+    
+    // From: https://www.ioscreator.com/tutorials/detect-shake-gestures-ios-tutorial
     override func becomeFirstResponder() -> Bool {
         return true
     }
@@ -95,48 +116,46 @@ class ViewController: UIViewController {
     
     
     // MARK: -
-    // MARK: Game UI Logic Methods
-
+    // MARK: Game UI and Logic Methods
+    
+    /**
+     Starts a new game or play again
+    */
+    func newGame(restart: Bool) {
+        print("play again")
+        
+        // Disables the view detail buttons of each events.
+        // these sits on top of the labels in the UI
+        self.disableEventsBtns()
+        
+        // start a new round
+        self.newRound()
+        
+        if restart == true {
+            self.initialUI()
+            self.game.totalRounds = self.numberOfRounds
+        }
+    }
+    
+    /**
+     verifies if the events are in chronological order and displays the outcome
+    */
     private func checkAnswer() {
         
-        // hides the time label
-        timerLabel.isHidden = true
-        timerLabel.text = ""
-        
-        // shows the result button
-        nextRoundBtn.isHidden = false
-        nextRoundBtn.titleLabel?.text = ""
+        game.totalRounds -= 1
         
         // verifies if events are in the correct order
         let correctOrder = game.verifyAnswer()
         
-        if correctOrder == true {
-            /// display button correct
-            if let bgImage: UIImage = UIImage(named: "next_round_success") {
-                nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
-            }
-        } else {
-            /// display button incorrect
-            if let bgImage: UIImage = UIImage(named: "next_round_fail") {
-                nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
-            }
-        }
-        
-        // info label
-        infoLabel.text = "Tap events to learn more"
-        enableEventsBtns()
-        
-        if game.totalRounds == 0 {
-            // show score
-            print("End of Game: \(game.score)")
-        }
+        self.roundUI(order:correctOrder )
+        self.enableEventsBtns()
     }
     
+    
+    /**
+     - Sets a new round
+    */
     private func newRound() {
-        if game.totalRounds == 0 {
-            game.totalRounds = numberOfRounds
-        }
-        
         game.obtainEventList()
         if let events = game.listOfEvents {
             eventLabel_1.text = events[0].event
@@ -152,6 +171,9 @@ class ViewController: UIViewController {
     // MARK: -
     // MARK: IBActions
     
+    /**
+     - Reorder the model array and switches labels text
+    */
     @IBAction func swapListOfEvents(_ sender: UIButton) {
         guard let totalNumEvents = game.listOfEvents?.count else {
             return
@@ -212,15 +234,24 @@ class ViewController: UIViewController {
     }
     
     
+    /**
+     play next round of the game
+    */
     @IBAction func nextRoundPressed(_ sender: UIButton) {
-        sender.isHidden = true
-        timerLabel.isHidden = false
-        timerLabel.text = ""
-        infoLabel.text = "Shake to complete"
-        disableEventsBtns()
-        self.newRound()
+        
+        if game.totalRounds == 0 {
+            performSegue(withIdentifier: "results", sender: game.score)
+        } else {
+            sender.isHidden = true
+            self.initialUI()
+            self.disableEventsBtns()
+            self.newRound()
+        }
     }
     
+    /**
+     Invokes perform segue to the WebViewController
+    */
     @IBAction func showDetails(_ sender: UIButton) {
         var eventId: Int = 0
         switch sender.tag {
@@ -241,8 +272,55 @@ class ViewController: UIViewController {
     
     
     // MARK: -
-    // MARK: UI Helper Methods
-
+    // MARK: UI Methods
+    
+    fileprivate func initialUI() {
+        timerLabel.text = ""
+        timerLabel.isHidden = false
+        
+        nextRoundBtn.setTitle("", for: .normal)
+        nextRoundBtn.isHidden = true
+        
+        infoLabel.text = "Shake to complete"
+    }
+    
+    
+    fileprivate func roundUI(order isCorrect: Bool) {
+        
+        if game.totalRounds == 0 {
+            if isCorrect == true {
+                /// display correct view results button
+                if let bgImage: UIImage = UIImage(named: "view_results_success") {
+                    nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
+                }
+            } else {
+                /// display incorrect view results button
+                if let bgImage: UIImage = UIImage(named: "view_results_fail") {
+                    nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
+                }
+            }
+        } else {
+            if isCorrect == true {
+                /// display correct
+                if let bgImage: UIImage = UIImage(named: "next_round_success") {
+                    nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
+                }
+            } else {
+                /// display incorrect
+                if let bgImage: UIImage = UIImage(named: "next_round_fail") {
+                    nextRoundBtn.setBackgroundImage(bgImage, for: .normal)
+                }
+            }
+        }
+        
+        timerLabel.text = ""
+        timerLabel.isHidden = true
+        
+        nextRoundBtn.isHidden = false
+        
+        infoLabel.text = "Tap events to learn more"
+    }
+    
     fileprivate func disableEventsBtns() {
         // disables the swap events buttons
         for n in 1...6 {
@@ -257,7 +335,7 @@ class ViewController: UIViewController {
     }
     
     fileprivate func enableEventsBtns() {
-         // enables the swap events buttons
+        // enables the swap buttons
         for n in 1...6 {
             if let button = self.view.viewWithTag(n) as? UIButton {
                 button.isEnabled = false

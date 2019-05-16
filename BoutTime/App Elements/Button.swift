@@ -30,7 +30,6 @@ import UIKit
     
     func shareInit() {
         refreshCorners(_value: cornerRadius)
-        addIcon(_name: icon)
     }
     
     // Mark: - Helper Methods
@@ -40,27 +39,11 @@ import UIKit
         layer.cornerRadius = _value
     }
     
-    /// Adds icons to buttons
-    func addIcon(_name: String) {
-        // https://stackoverflow.com/questions/36301791/how-to-set-the-icon-on-the-button-in-ios-using-swift
-        // position of the icon
-        if let icon = UIImage(named: _name) {
-            setImage(icon, for: .normal)
-            imageView?.contentMode = .scaleAspectFit
-            imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
-        }
-    }
     
     // Mark: - Exposed to the Storyboard UI
     @IBInspectable var cornerRadius: CGFloat = 15 {
         didSet {
             refreshCorners(_value: cornerRadius)
-        }
-    }
-    
-    @IBInspectable var icon: String = "rightArrow" {
-        didSet {
-            addIcon(_name: icon)
         }
     }
 }
