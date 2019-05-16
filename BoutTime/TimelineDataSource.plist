@@ -4,123 +4,263 @@
 <array>
 	<dict>
 		<key>event</key>
-		<string>Illinois&apos; ban on texting while driving goes into effect.</string>
+		<string>Tropical Storm Allison</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Texting_while_driving</string>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Allison</string>
 		<key>date</key>
-		<string>2010-01-01</string>
+		<string>2001-06-01</string>
 		<key>order</key>
 		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>A SeaWorld employee in Orlando, Florida, is killed by a killer whale during a live performance</string>
+		<string>Tropical Storm Hanna makes</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Incidents_at_SeaWorld_parks#SeaWorld_Orlando</string>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Hanna_(2002)</string>
 		<key>date</key>
-		<string>2010-02-01</string>
+		<string>2002-09-14</string>
 		<key>order</key>
 		<integer>2</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>A shortage of tomatoes which lasts until April begins</string>
+		<string>Hurricane Isidore</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/2010_United_States_tomato_shortage</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Isidore</string>
 		<key>date</key>
-		<string>2010-03-01</string>
+		<string>2002-09-26</string>
 		<key>order</key>
 		<integer>3</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>An explosion occurs at the Deepwater Horizon oil rig, killing 11 workers</string>
+		<string>Hurricane Lili</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Deepwater_Horizon_explosion</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Lili</string>
 		<key>date</key>
-		<string>2010-04-01</string>
+		<string>2002-10-03</string>
 		<key>order</key>
 		<integer>4</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>Car bomb fails to go off in Times Square, New York City.</string>
+		<string>Hurricane Cindy</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/2010_Times_Square_car_bombing_attempt</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Cindy_(2005)</string>
 		<key>date</key>
-		<string>2010-05-01</string>
+		<string>2005-07-05</string>
 		<key>order</key>
 		<integer>5</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>The Protecting Cyberspace as a National Asset Act is introduced in the US Senate</string>
+		<string>Hurricane Dennis</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Protecting_Cyberspace_as_a_National_Asset_Act</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Dennis</string>
 		<key>date</key>
-		<string>2010-06-01</string>
+		<string>2005-07-10</string>
 		<key>order</key>
 		<integer>6</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>The Russian spies are deported from the United States</string>
+		<string>Hurricane Katrina</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Illegals_Program</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Katrina</string>
 		<key>date</key>
-		<string>2010-07-01</string>
+		<string>2005-08-29</string>
 		<key>order</key>
 		<integer>7</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>Iraq War: The last U.S. combat troops leave Iraq</string>
+		<string>Hurricane Rita</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Iraq_War</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Rita</string>
 		<key>date</key>
-		<string>2010-08-01</string>
+		<string>2005-09-24</string>
 		<key>order</key>
 		<integer>8</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>The Fourmile Canyon Fire, the most costly wild fire in Colorado state history </string>
+		<string>Hurricane Humberto</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Fourmile_Canyon#Fourmile_Canyon_Fire</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Humberto_(2007)</string>
 		<key>date</key>
-		<string>2010-09-01</string>
+		<string>2007-09-13</string>
 		<key>order</key>
 		<integer>9</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>The US Military begins accepting applications for gay service members</string>
+		<string>Hurricane Gustav</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/Don%27t_ask,_don%27t_tell</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Gustav</string>
 		<key>date</key>
-		<string>2010-10-01</string>
+		<string>2008-08-31</string>
 		<key>order</key>
 		<integer>10</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>WikiLeaks releases the first of thousands of confidential documents sent by U.S. diplomats</string>
+		<string>Hurricane Ike</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/United_States_diplomatic_cables_leak</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Ike_(2008)</string>
 		<key>date</key>
-		<string>2010-11-01</string>
+		<string>2008-09-13</string>
 		<key>order</key>
 		<integer>11</integer>
 	</dict>
 	<dict>
 		<key>event</key>
-		<string>US Census are released. The US population grows by 9.7% to 310 million</string>
+		<string>Hurricane Ida</string>
 		<key>link</key>
-		<string>https://en.wikipedia.org/wiki/2010_United_States_Census</string>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Ida_(2009)</string>
 		<key>date</key>
-		<string>2010-12-01</string>
+		<string>2009-11-10</string>
 		<key>order</key>
 		<integer>12</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Bonnie</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Bonnie_(2010)</string>
+		<key>date</key>
+		<string>2010-07-25</string>
+		<key>order</key>
+		<integer>12</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Depression Five</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Tropical_Depression_Five_(2010)</string>
+		<key>date</key>
+		<string>2010-08-15</string>
+		<key>order</key>
+		<integer>12</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Lee</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Lee_(2011)</string>
+		<key>date</key>
+		<string>2011-09-04</string>
+		<key>order</key>
+		<integer>13</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Debby</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Debby_(2012)</string>
+		<key>date</key>
+		<string>2011-06-23</string>
+		<key>order</key>
+		<integer>14</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Hurricane Isaac</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Isaac_(2012)</string>
+		<key>date</key>
+		<string>2012-08-29</string>
+		<key>order</key>
+		<integer>15</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Karen</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/2013_Atlantic_hurricane_season#Tropical_Storm_Karen</string>
+		<key>date</key>
+		<string>2013-10-06</string>
+		<key>order</key>
+		<integer>16</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Bill</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Bill_(2015)</string>
+		<key>date</key>
+		<string>2015-06-16</string>
+		<key>order</key>
+		<integer>17</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Cindy</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Cindy_(2017)</string>
+		<key>date</key>
+		<string>2017-06-22</string>
+		<key>order</key>
+		<string>18</string>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Hurricane Harvey</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Harvey</string>
+		<key>date</key>
+		<string>2017-08-25</string>
+		<key>order</key>
+		<integer>19</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Hurricane Nate</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Nate_(2017)</string>
+		<key>date</key>
+		<string>2017-10-08</string>
+		<key>order</key>
+		<integer>20</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Gordon</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Tropical_Storm_Gordon_(2018)</string>
+		<key>date</key>
+		<string>2018-09-08</string>
+		<key>order</key>
+		<integer>21</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Hurricane Florence</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Florence</string>
+		<key>date</key>
+		<string>2018-09-14</string>
+		<key>order</key>
+		<integer>22</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Tropical Storm Michael</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Michael</string>
+		<key>date</key>
+		<string>2018-10-11</string>
+		<key>order</key>
+		<integer>23</integer>
+	</dict>
+	<dict>
+		<key>event</key>
+		<string>Hurricane Willa</string>
+		<key>link</key>
+		<string>https://en.wikipedia.org/wiki/Hurricane_Willa</string>
+		<key>date</key>
+		<string>2018-10-26</string>
+		<key>order</key>
+		<integer>24</integer>
 	</dict>
 </array>
 </plist>
